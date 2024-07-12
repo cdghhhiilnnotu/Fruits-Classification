@@ -31,34 +31,26 @@ class FruitPlot:
         plt.show()
 
     def plot_history(self, acc, loss):
-        # Create a figure and axis
         fig, ax = plt.subplots()
 
-        # Initialize the plot with an empty line
         line, = ax.plot(self.acc, [], marker='o', color='b', label="Dynamic Array")
 
-        # Set the x-axis limits
-        ax.set_xlim(0, 100)  # Adjust as needed
+        ax.set_xlim(0, 100)
 
-        # Function to update the plot
         def update_plot(i):
-            value = np.random.randint(1, 10)  # Generate a random value
-            self.acc.append(value)  # Add the value to the array
+            value = np.random.randint(1, 10)
+            self.acc.append(value)
 
-            # Update the plot data
             line.set_data(range(len(self.acc)), self.acc)
 
-            # Adjust the x-axis limits dynamically
             ax.set_xlim(0, len(self.acc) + 1)
             ax.plot(self.acc, marker='o', color='b', label="Acc")
 
-        # Animate the plot
         ani = FuncAnimation(fig, update_plot, frames=10, repeat=False)
 
-        # Show the legend
         ax.legend()
 
-        print("Before plt.show()")  # Debugging print
+        print("Before plt.show()")
         plt.show()
 
     

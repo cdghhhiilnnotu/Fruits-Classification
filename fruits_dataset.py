@@ -17,16 +17,12 @@ class FruitDataset(data.Dataset):
         img = Image.open(img_path).convert('RGB')  
         img = img.resize((224, 224), Image.LANCZOS)
 
-        # print(img.size)
         img_transformed = self.fruit_transform(img, self.phase)
-        # print(img_transformed.shape)
 
         if self.phase == "train":
             label = img_path.split("\\")[2]
-            # print(img_path)
         elif self.phase == "test":
             label = img_path.split("\\")[2]
-            # print(img_path)
         
         try:
             label = self.fruit_classes.index(label)
@@ -38,12 +34,9 @@ class FruitDataset(data.Dataset):
 if __name__ == "__main__":
     train_list = FruitDatapath("data", "train")()
     test_list = FruitDatapath("data", "test")()
-    # print(train_list)
 
     train_dataset = FruitDataset(train_list, fruit_transform=FruitsTransform(), phase="train", fruit_classes=['apple', 'banana', 'orange'])
     test_dataset = FruitDataset(test_list, fruit_transform=FruitsTransform(), phase="test", fruit_classes=['apple', 'banana', 'orange'])
-
-    # print(train_dataset.__len__())
 
     label_map = {
         0: "Apple",
